@@ -1,6 +1,7 @@
 package fr.ensicaen.dome6.api.user;
 
 import fr.ensicaen.dome6.security.Role;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +20,7 @@ public class User implements UserDetails {
     private int id;
 
     @NotNull
+    @Column(unique = true)
     private String username;
 
     @NotNull
@@ -31,6 +33,7 @@ public class User implements UserDetails {
     private String lastname;
 
     @NotNull
+    @Email
     private String email;
 
     private int points;
@@ -115,7 +118,7 @@ public class User implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Set<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
 
         for (Role role : roles) {

@@ -39,7 +39,8 @@ public class SecurityController {
         throw new IllegalStateException("Add Spring Security to handle authentication");
     }
 
-    @PostMapping("/register")
+    @ApiOperation(value = "Register", notes = "Inscription d'un nouvel utilisateur.")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void register(@RequestBody User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
