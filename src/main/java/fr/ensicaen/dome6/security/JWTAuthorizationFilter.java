@@ -1,5 +1,7 @@
 package fr.ensicaen.dome6.security;
 
+import fr.ensicaen.dome6.api.user.User;
+import fr.ensicaen.dome6.api.user.UserRepository;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,8 +17,12 @@ import java.util.ArrayList;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    public JWTAuthorizationFilter(AuthenticationManager authManager) {
+    private UserRepository userRepository;
+
+    public JWTAuthorizationFilter(AuthenticationManager authManager,
+                                  UserRepository userRepository) {
         super(authManager);
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -40,11 +46,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
         if (token != null) {
             // parse the token.
-            String user = Jwts.parser()
+            String username = Jwts.parser()
                     .setSigningKey(SecurityConstants.SECRET)
                     .parseClaimsJws(token.replace(SecurityConstants.TOKEN_PREFIX, ""))
                     .getBody()
                     .getSubject();
+
+            User user = userRepository.findByUsername(username);
 
             if (user != null) {
                 return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());

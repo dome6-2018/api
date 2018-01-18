@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @Controller
