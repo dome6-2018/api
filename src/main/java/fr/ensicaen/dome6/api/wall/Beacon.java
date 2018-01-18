@@ -16,6 +16,12 @@ public class Beacon {
     @Id
     private String uuid;
 
+    @NotNull
+    private String minor;
+
+    @NotNull
+    private String major;
+
     @ManyToOne
     @JsonIgnore
     private Wall wall;
@@ -37,6 +43,22 @@ public class Beacon {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public String getMinor() {
+        return minor;
+    }
+
+    public void setMinor(String minor) {
+        this.minor = minor;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public Wall getWall() {
