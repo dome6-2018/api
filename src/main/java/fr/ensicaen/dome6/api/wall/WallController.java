@@ -39,12 +39,12 @@ public class WallController {
         return wall;
     }
 
-    @ApiOperation(value = "Modification de toutes les données d'un mur.")
+    @ApiOperation(value = "Modification de certaines données d'un mur.")
     @RequestMapping(value = "/{wallUuid}/drawing", method = RequestMethod.PATCH)
     public void updateWallDrawing(@PathVariable("wallUuid") String wallUuid, @RequestBody Wall wall) {
         Wall actualWall = wallRepository.findByUuid(wallUuid);
 
-        if (actualWall == null || wall.equals(actualWall)) {
+        if (actualWall == null) {
             throw new NoResultException();
         }
 
