@@ -6,6 +6,7 @@ import org.hibernate.annotations.TypeDefs;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
@@ -21,14 +22,16 @@ public class Wall implements Serializable {
     @NotEmpty
     private String name;
 
+    @NotNull
     private double latitude;
 
+    @NotNull
     private double longitude;
 
-    @NotEmpty
+    @NotNull
     private int resX;
 
-    @NotEmpty
+    @NotNull
     private int resY;
 
     /*@Type(type = "json")
