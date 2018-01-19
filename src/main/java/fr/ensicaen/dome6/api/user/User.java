@@ -2,13 +2,12 @@ package fr.ensicaen.dome6.api.user;
 
 import fr.ensicaen.dome6.security.Role;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,20 +18,20 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
+    @NotEmpty
     @Column(unique = true)
     private String username;
 
-    @NotNull
+    @NotEmpty
     private String password;
 
-    @NotNull
+    @NotEmpty
     private String firstname;
 
-    @NotNull
+    @NotEmpty
     private String lastname;
 
-    @NotNull
+    @NotEmpty
     @Email
     private String email;
 

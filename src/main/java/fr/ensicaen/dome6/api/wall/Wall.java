@@ -1,12 +1,11 @@
 package fr.ensicaen.dome6.api.wall;
 
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
@@ -19,24 +18,28 @@ public class Wall implements Serializable {
     @Id
     private String uuid;
 
-    @NotNull
+    @NotEmpty
     private String name;
 
-    @NotNull
+    @NotEmpty
     private double latitude;
 
-    @NotNull
+    @NotEmpty
     private double longitude;
 
-    @NotNull
+    @NotEmpty
     private int resX;
 
-    @NotNull
+    @NotEmpty
     private int resY;
 
-    @Type(type = "json")
+    /*@Type(type = "json")
     @Column(columnDefinition = "json")
-    private Color[][] drawing;
+    private Color[][] drawing;*/
+
+    // TODO ne pas laisser en string mais utiliser le tableau
+    @Column(columnDefinition = "longtext")
+    private String drawing;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy="wall")
     private Set<Beacon> beacons = new HashSet<>();
@@ -99,11 +102,11 @@ public class Wall implements Serializable {
         this.resY = resY;
     }
 
-    public Color[][] getDrawing() {
+    public String getDrawing() {
         return drawing;
     }
 
-    public void setDrawing(Color[][] drawing) {
+    public void setDrawing(String drawing) {
         this.drawing = drawing;
     }
 

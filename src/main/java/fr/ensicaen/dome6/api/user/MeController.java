@@ -38,16 +38,16 @@ public class MeController {
             throw new NoResultException();
         }
 
-        if (user.getLastname() != null) {
+        if (user.getLastname() != null && !user.getLastname().equals("")) {
             actualUser.setLastname(user.getLastname());
         }
-        if (user.getFirstname() != null) {
+        if (user.getFirstname() != null && !user.getFirstname().equals("")) {
             actualUser.setFirstname(user.getFirstname());
         }
-        if (user.getEmail() != null) {
+        if (user.getEmail() != null && !user.getEmail().equals("")) {
             actualUser.setEmail(user.getEmail());
         }
-        if (user.getPassword() != null) {
+        if (user.getPassword() != null && !user.getPassword().equals("")) {
             actualUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         }
 

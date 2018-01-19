@@ -31,11 +31,11 @@ public class Color implements Serializable {
      * @param blue
      * @param alpha
      */
-    public Color(float red, float green, float blue, float alpha) {
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
+    public Color(float alpha, float blue, float green, float red) {
         this.alpha = alpha;
+        this.blue = blue;
+        this.green = green;
+        this.red = red;
     }
 
     public float getRed() {

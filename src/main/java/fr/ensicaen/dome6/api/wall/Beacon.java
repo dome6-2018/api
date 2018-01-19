@@ -2,6 +2,7 @@ package fr.ensicaen.dome6.api.wall;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,10 +17,10 @@ public class Beacon {
     @Id
     private String uuid;
 
-    @NotNull
+    @NotEmpty
     private String minor;
 
-    @NotNull
+    @NotEmpty
     private String major;
 
     @ManyToOne
