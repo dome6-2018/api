@@ -21,10 +21,8 @@ public class Wall implements Serializable {
     @NotEmpty
     private String name;
 
-    @NotEmpty
     private double latitude;
 
-    @NotEmpty
     private double longitude;
 
     @NotEmpty
